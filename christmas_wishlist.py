@@ -62,7 +62,7 @@ except Exception as e:
 # Initialize session state for storing wishlists
 if 'wishlists' not in st.session_state:
     st.session_state.wishlists = {
-        name: [] for name in ["Matteo", "Nicolas", "Aria", "Mom", "Dad", "Kyle", "Julia"]
+        name: [] for name in ["Matteo", "Nicolas", "Aria", "Mom", "Dad", "Julia", "Kyle"]
     }
 
 def scrape_product_details(url):
@@ -329,7 +329,7 @@ def load_wishlist_data():
     try:
         # Clear current session state
         st.session_state.wishlists = {
-            name: [] for name in ["Matteo", "Nicolas", "Aria", "Mom", "Dad", "Kyle", "Julia"]
+            name: [] for name in ["Matteo", "Nicolas", "Aria", "Mom", "Dad", "Julia", "Kyle"]
         }
         
         # Load data from each person's collection
@@ -352,7 +352,7 @@ st.title("🎄 Family Christmas Wishlist 2024")
 st.markdown("---")
 
 # Create tabs for each family member
-tabs = st.tabs(["Matteo", "Nicolas", "Aria", "Mom", "Dad", "Kyle", "Julia"])
+tabs = st.tabs(["Matteo", "Nicolas", "Aria", "Mom", "Dad", "Julia", "Kyle"])
 
 for i, (person, tab) in enumerate(zip(st.session_state.wishlists.keys(), tabs)):
     with tab:
