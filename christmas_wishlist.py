@@ -10,21 +10,6 @@ import time
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 
-MONGO_URI = "mongodb+srv://piermarinim:Matteo#3@christmas.ka3gx.mongodb.net/"
-try:
-    client = MongoClient(MONGO_URI, server_api=ServerApi('1'))
-    db = client['christmas']
-    # Create collections for each person if they don't exist
-    people = ["Matteo", "Nicolas", "Aria", "Mom", "Dad", "Kyle", "Julia"]
-    collections = {person: db[person.lower()] for person in people}
-    # Verify connection
-    client.admin.command('ping')
-    print("Successfully connected to MongoDB!")
-except Exception as e:
-    st.error(f"Failed to connect to MongoDB: {str(e)}")
-    print(f"MongoDB connection error: {str(e)}")
-
-# Page config
 st.set_page_config(
     page_title="Family Christmas Wishlist 🎄",
     page_icon="🎁",
@@ -59,6 +44,20 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
+
+MONGO_URI = "mongodb+srv://piermarinim:Matteo#3@christmas.ka3gx.mongodb.net/"
+try:
+    client = MongoClient(MONGO_URI, server_api=ServerApi('1'))
+    db = client['christmas']
+    # Create collections for each person if they don't exist
+    people = ["Matteo", "Nicolas", "Aria", "Mom", "Dad", "Kyle", "Julia"]
+    collections = {person: db[person.lower()] for person in people}
+    # Verify connection
+    client.admin.command('ping')
+    print("Successfully connected to MongoDB!")
+except Exception as e:
+    st.error(f"Failed to connect to MongoDB: {str(e)}")
+    print(f"MongoDB connection error: {str(e)}")
 
 # Initialize session state for storing wishlists
 if 'wishlists' not in st.session_state:
